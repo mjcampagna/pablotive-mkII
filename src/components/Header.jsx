@@ -6,7 +6,6 @@ export default class Header extends React.Component {
 		return (
 			<ul>
 				<li><Link to='/'>Home</Link></li>
-				<li><Link to='/image'>Image</Link></li>
 			</ul>
 		)
 	}	

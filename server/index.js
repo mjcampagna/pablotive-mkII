@@ -22,8 +22,21 @@ app.get('/unsplash/latest', ( req, res ) => {
 	});
 });
 
-app.get('*', (request, response) => {
-	response.sendFile( path.resolve(__dirname, '../dist', 'index.html') );
+app.get('/unsplash/image/:id', ( req, res ) => {
+	unsplash.photos.getPhoto(req.params.id)
+	.then(Unsplash.toJson)
+	.then(json => {
+		res.status(200).send(json);
+	});
+});
+
+app.get('/*', (request, response) => {
+	response.sendFile( path.resolve(__dirname, '../dist', 'index.html'), 
+	(err) => {
+		if (err) {
+			res.status(500).send(err);
+		}
+	});
 });
 
 // require('es6-promise').polyfill();
