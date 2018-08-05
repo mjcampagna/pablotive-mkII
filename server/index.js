@@ -21,6 +21,14 @@ app.get('/unsplash/latest', ( req, res ) => {
 	});
 });
 
+app.get('/unsplash/search/:query', ( req, res ) => {
+	unsplash.search.photos(req.params.query, 1, 25)
+	.then(Unsplash.toJson)
+	.then(json => {
+		res.status(200).send(json.results);
+	});
+});
+
 app.get('/unsplash/image/:id', ( req, res ) => {
 	unsplash.photos.getPhoto(req.params.id)
 	.then(Unsplash.toJson)

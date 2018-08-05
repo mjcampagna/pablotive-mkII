@@ -11,3 +11,10 @@ export function setImage( image ) {
 		payload: image
 	}
 }
+
+export function setQuery( query ) {
+	return {
+		type: 'SET_QUERY',
+		payload: query
+	}
+}

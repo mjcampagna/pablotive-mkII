@@ -13,6 +13,13 @@ export default function Main(props) {
 			<Switch>
 
 				<Route 
+					exact path='/home' 
+					render={(routeProps) => (
+						<Home {...routeProps} />
+					)}
+				/>
+
+				<Route 
 					exact path='/' 
 					render={(routeProps) => (
 						<Thumbnails {...routeProps} />

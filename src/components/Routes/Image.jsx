@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
 	_0ColLeft,
@@ -21,7 +21,7 @@ import {
 
 import Loading from '../Loading.jsx';
 
-class Image extends React.Component {
+class Image extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -44,7 +44,7 @@ class Image extends React.Component {
 			return <Loading />;
 		}
 		return (
-			<React.Fragment>
+			<Fragment>
 				<div id="output">
 
 					<div className="vector" id="vector" 
@@ -79,7 +79,7 @@ class Image extends React.Component {
 				<p className="photographer-name">
 					Photo by {this.props.image.user.name}
 				</p>
-			</React.Fragment>
+			</Fragment>
 		)
 	}
 }

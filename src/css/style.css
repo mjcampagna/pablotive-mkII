@@ -53,8 +53,7 @@ h3 {
 }
 
 .column * {
-  margin: 0 0 1.125rem;
-  text-align: justify;
+  /* margin: 0 0 1.125rem; */
 }
 
 .column > *:last-child {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
@@ -19,19 +19,29 @@ import {
 
 import {
 	updateImages,
+	setImage,
 } from './actions.js';
 
 import Loading from '../Loading.jsx';
 
-class Thumbnails extends React.Component {
+class Thumbnails extends Component {
 
 	componentDidMount() {
 		this.props.dispatch( _1ColRight() );
 
-		fetch('/unsplash/latest')
+		let query = this.props.query;
+		let endpoint;
+		if ( query === '' ) {
+			endpoint = '/unsplash/latest';
+		} else {
+			endpoint = '/unsplash/search/' + query;
+		}
+
+		fetch(endpoint)
 		.then( res => res.json() )
 		.then( json => {
 			this.props.dispatch( updateImages(json) );
+			this.props.dispatch( setImage(null) );
 		})
 	}
 
@@ -40,7 +50,7 @@ class Thumbnails extends React.Component {
 			return <Loading />;
 		}
 		return (
-			<React.Fragment>
+			<Fragment>
 				{this.props.images && this.props.images.map( image => (
 					<Link key={image.id} to={'image/' + image.id}>
 						<img 
@@ -49,13 +59,14 @@ class Thumbnails extends React.Component {
 						/>
 					</Link> 
 				))}
-			</React.Fragment>
+			</Fragment>
 		)
 	}	
 }
 
 const mapStateToProps = state => ({
-	images: state.primitive.images
+	images: state.primitive.images,
+	query: state.primitive.query
 });
 
 export default connect(mapStateToProps)(Thumbnails);

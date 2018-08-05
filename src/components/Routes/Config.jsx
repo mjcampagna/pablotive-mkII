@@ -1,9 +1,5 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-
-import {
-	updateImages,
-} from './actions.js';
 
 import { imgSrcToBlob } from 'blob-util';
 import Canvas from "../../primitive/canvas.js";
@@ -61,7 +57,7 @@ function go(original, cfg) {
 	optimizer.start();
 }
 
-class Config extends React.Component {
+class Config extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -70,8 +66,8 @@ class Config extends React.Component {
 			view: 'original',
 
 			steps: 75,
-			computeSize: 512,
-			viewSize: 512,
+			computeSize: 840,
+			viewSize: 840,
 			shapes: 200,
 			alpha: 0.5,
 			mutations: 30,
@@ -86,6 +82,22 @@ class Config extends React.Component {
 	}
 
 	componentDidMount() {
+	}
+
+	handleConfig(event, name) {
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+		this.setState({
+			[name]: value
+		}, () => {
+
+			var shapes = [];
+			if ( this.state.shapeTypeTriangle ) shapes.push(Triangle);
+			if ( this.state.shapeTypeRectangle ) shapes.push(Rectangle);
+			if ( this.state.shapeTypeEllipse ) shapes.push(Ellipse);
+			this.setState({
+				shapeTypes: shapes
+			})
+		})
 	}
 
 	handleGenerate(event) {
@@ -117,9 +129,15 @@ class Config extends React.Component {
 
 	render() {
 		return (
-			<React.Fragment>
+			<Fragment>
 				<form id="primitivConfig" onSubmit={(e) => this.handleGenerate(e)}>
-					<label>Number of Shapes <span className="slider-value">{this.state.steps}</span></label>
+
+					<button type="submit" id="generate">Generate</button>
+					<br />
+
+					<label>Number of Shapes 
+						<span className="slider-value">{this.state.steps}</span>
+					</label>
 					<legend>speed v. quality</legend>
 					<input type="range" name="steps" min="1" max="500" 
 						value={this.state.steps} 
@@ -128,43 +146,74 @@ class Config extends React.Component {
 
 					<fieldset>
 						<label>
-							<input type="checkbox" name="shapeType" value="triangle" checked={this.state.shapeTypeTriangle} onChange={(e) => this.handleConfig(e, 'shapeTypeTriangle')} />
+							<input type="checkbox" name="shapeType" value="triangle" 
+								checked={this.state.shapeTypeTriangle} 
+								onChange={(e) => this.handleConfig(e, 'shapeTypeTriangle')} 
+							/>
 							Triangles
 						</label>
 						<label>
-							<input type="checkbox" name="shapeType" value="rectangle" checked={this.state.shapeTypeRectangle} onChange={(e) => this.handleConfig(e, 'shapeTypeRectangle')} />
+							<input type="checkbox" name="shapeType" value="rectangle" 
+								checked={this.state.shapeTypeRectangle} 
+								onChange={(e) => this.handleConfig(e, 'shapeTypeRectangle')} 
+							/>
 							Rectangles
 						</label>
 						<label>
-							<input type="checkbox" name="shapeType" value="ellipse" checked={this.state.shapeTypeEllipse} onChange={(e) => this.handleConfig(e, 'shapeTypeEllipse')} />
+							<input type="checkbox" name="shapeType" value="ellipse" 
+								checked={this.state.shapeTypeEllipse} 
+								onChange={(e) => this.handleConfig(e, 'shapeTypeEllipse')} 
+							/>
 							Ellipses
 						</label>
 					</fieldset>
 
-					<label>Computation Size <span className="slider-value">{this.state.computeSize}</span></label>
+					<label>Computation Size 
+						<span className="slider-value">{this.state.computeSize}</span>
+					</label>
 					<legend>speed v. quality</legend>
-					<input type="range" name="computeSize" min="128" max="2048" value={this.state.computeSize} onChange={(e) => this.handleConfig(e, 'computeSize')} />
+					<input type="range" name="computeSize" min="128" max="2048" 
+						value={this.state.computeSize} 
+						onChange={(e) => this.handleConfig(e, 'computeSize')} 
+					/>
 
-					<label>Mutations <span className="slider-value">{this.state.mutations}</span></label>
+					<label>Mutations 
+						<span className="slider-value">{this.state.mutations}</span>
+					</label>
 					<legend>speed v. quality</legend>
-					<input type="range" name="mutations" min="0" max="100" value={this.state.mutations} onChange={(e) => this.handleConfig(e, 'mutations')} />
+					<input type="range" name="mutations" min="0" max="100" 
+						value={this.state.mutations} 
+						onChange={(e) => this.handleConfig(e, 'mutations')} 
+					/>
 
-					<label>Precision <span className="slider-value">{this.state.shapes}</span></label>
+					<label>Precision 
+						<span className="slider-value">{this.state.shapes}</span>
+					</label>
 					<legend>speed v. precision</legend>
-					<input type="range" name="shapes" min="1" max="1000" value={this.state.shapes} onChange={(e) => this.handleConfig(e, 'shapes')} />
+					<input type="range" name="shapes" min="1" max="1000" 
+						value={this.state.shapes} 
+						onChange={(e) => this.handleConfig(e, 'shapes')} 
+					/>
 
-					<label>Viewing Size <span className="slider-value">{this.state.viewSize}</span></label>
-					<input type="range" name="viewSize" min="256" max="2048" value={this.state.viewSize} onChange={(e) => this.handleConfig(e, 'viewSize')} />
+					<label>Viewing Size 
+						<span className="slider-value">{this.state.viewSize}</span>
+					</label>
+					<input type="range" name="viewSize" min="256" max="2048" 
+						value={this.state.viewSize} 
+						onChange={(e) => this.handleConfig(e, 'viewSize')} 
+					/>
 
 					{/* <label>Alpha <span className="slider-value">{this.state.alpha}</span></label>
 					<legend>Opacity</legend>
-					<input type="range" name="alpha" min="0" max="1" step="0.1" value={this.state.alpha} onChange={(e) => this.handleConfig(e, 'alpha')} />
+					<input type="range" name="alpha" min="0" max="1" step="0.1" 
+						value={this.state.alpha} 
+						onChange={(e) => this.handleConfig(e, 'alpha')} 
+					/>
 					<label>
 						<input type="checkbox" name="mutateAlpha" checked="checked" />
 						Adjust opacity automatically
 					</label> */}
 
-					<button type="submit" id="generate">Generate</button>
 				</form>
 
 				<p><span id="steps">&nbsp;</span></p>
@@ -174,7 +223,7 @@ class Config extends React.Component {
 				</div>
 				<p className="info">Or select "Raster", right-click and Save.</p>
 
-			</React.Fragment>
+			</Fragment>
 		)
 	}
 }

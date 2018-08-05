@@ -124,9 +124,9 @@ class Page extends React.Component {
               <Footer />
             </footer>
 
-            <nav className="nav spine">
+            {/* <nav className="nav spine">
               <Menu classes="menu" />
-            </nav>
+            </nav> */}
 
             <div className="fedora spine">
               <div className="inner">

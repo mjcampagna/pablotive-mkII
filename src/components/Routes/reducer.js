@@ -1,6 +1,7 @@
 const initialState = {
   images: null,
   image: null,
+  query: '',
   view: 'original'
 };
 
@@ -18,6 +19,12 @@ export default function( state = initialState, action ) {
       return {
         ... state,
         image: action.payload
+      }
+
+    case 'SET_QUERY':
+      return {
+        ... state,
+        query: action.payload
       }
 
     default:
