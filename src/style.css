@@ -126,7 +126,8 @@ header a {
 	border: 1px solid black;
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
-	color: white;
+  color: white;
+  cursor: pointer;
 	font-size: 0.75rem;
 	position: absolute; top: 0; right: 0;
 	text-align: center;
