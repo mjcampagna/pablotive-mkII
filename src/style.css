@@ -32,3 +32,7 @@ img {
 .column--main {
 	position: relative;
 }
+
+.photographer-name {
+	font-size: 0.75rem;
+}
