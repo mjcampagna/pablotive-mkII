@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import Macy from 'macy';
 
 import {
 	_0ColLeft,
@@ -31,6 +32,7 @@ class Thumbnails extends Component {
 
 		let query = this.props.query;
 		let endpoint;
+
 		if ( query === '' ) {
 			endpoint = '/unsplash/latest';
 		} else {
@@ -45,12 +47,32 @@ class Thumbnails extends Component {
 		})
 	}
 
+	componentDidUpdate(){
+		let macy = Macy({
+			breakAt: {
+				1030: 5,
+				824: 4,
+				618: 3,
+				412: 2
+			},
+			columns: 6,
+			container: '#thumbnails',
+			margin: 0,
+			mobileFirst: false,
+			trueOrder: true,
+			waitForImages: true
+		});
+		macy.runOnImageLoad( () => {
+			macy.recalculate(true);
+		}, true ); 
+	}
+
 	render() {
 		if ( !this.props.images ) {
 			return <Loading />;
 		}
 		return (
-			<Fragment>
+			<div id="thumbnails">
 				{this.props.images && this.props.images.map( image => (
 					<Link key={image.id} to={'image/' + image.id}>
 						<img 
@@ -59,7 +81,7 @@ class Thumbnails extends Component {
 						/>
 					</Link> 
 				))}
-			</Fragment>
+			</div>
 		)
 	}	
 }

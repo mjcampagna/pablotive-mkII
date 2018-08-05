@@ -33,9 +33,7 @@ class Home extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div>
-					<Search />
-				</div>
+				<Search />
 				<Thumbnails />
 			</Fragment>
 		)

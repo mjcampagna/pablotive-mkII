@@ -41,16 +41,19 @@ class Search extends Component {
 
 	render() {
 		return (
-			<form id="search" onSubmit={this.handleSubmit}>
-				<input type="text" 
-					value={this.state.query} 
-					onChange={this.handleChange} 
-				/>
-				<button type="submit">Find</button>
-			</form>
-		);	
-	}
+			<div>
 
+				<form id="search" onSubmit={this.handleSubmit}>
+					<input type="text" 
+						value={this.state.query} 
+						onChange={this.handleChange} 
+					/>
+					<button type="submit">Find</button>
+				</form>
+
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
