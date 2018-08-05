@@ -41,7 +41,7 @@ class Search extends Component {
 
 	render() {
 		return (
-			<div>
+			<div id="search-container">
 
 				<form id="search" onSubmit={this.handleSubmit}>
 					<input type="text" 

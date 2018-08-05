@@ -88,9 +88,9 @@ class Page extends React.Component {
           />
           <div className="pageBody">
 
-            <header className="header spine">
+            {/* <header className="header spine">
               <Header />
-            </header>
+            </header> */}
 
             <main className="main">
               <div className="main__body">
