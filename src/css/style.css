@@ -1,0 +1,271 @@
+html {
+  background: #fff;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+}
+
+/* ---- */
+
+/* @font-face {
+  font-display: swap;
+  font-family: "Marvin Visions";
+  src:url("../../lib/fonts/MarvinVisions-Bold.woff") format('woff'), 
+      url("../../lib/fonts/MarvinVisions-Bold.woff2") format('woff2'),
+      url("../../lib/fonts/MarvinVisions-Bold.eot") format('eot');
+} */
+
+h1,
+h2,
+h3 {
+  font-family: 'Marvin Visions', sans-serif;
+}
+
+/* ---- */
+
+.header {
+  border-bottom: 1px solid #f5f5f5;
+  box-sizing: border-box;
+}
+
+.header h1 {
+  line-height: 88px;
+  margin: 0;
+}
+
+@media screen and ( max-width: 1140px ) {
+  header {
+    padding-left : 12px;
+    padding-right: 12px;
+  }
+}
+
+/* ---- */
+
+.main {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+
+.column {
+  padding-top: 36px;
+  padding-bottom: 72px;
+}
+
+.column * {
+  margin: 0 0 1.125rem;
+  text-align: justify;
+}
+
+.column > *:last-child {
+  margin-bottom: 0;
+}
+
+[data-layout~="0col"] .column--main,
+[data-layout~="1col"] .column--main, .column--main
+{
+  padding-left : 0px;
+  padding-right: 0px;
+}
+
+[data-layout~="2col"] .column--main,
+[data-layout~="2col"][data-layout~="right"] .column--main,
+[data-layout~="2col"][data-layout~="split"] .column--main,
+[data-layout~="3col"] .column--main,
+[data-layout~="3col"][data-layout~="right"] .column--main
+{
+  padding-left : 0;
+  padding-right: 12px;
+}
+
+[data-layout~="2col"][data-layout~="left"] .column--main,
+[data-layout~="3col"][data-layout~="left"] .column--main
+{
+  padding-left : 12px;
+  padding-right: 0;
+}
+
+[data-layout~="3col"][data-layout~="split"] .column--main 
+{
+  padding-left : 12px;
+  padding-right: 12px;
+}
+
+@media screen and ( max-width: 1140px ) {
+
+  #column--main {
+    padding-left : 12px;
+    padding-right: 12px;
+  }
+
+}
+
+/* ---- */
+
+.column--side {
+  box-sizing: border-box;
+}
+
+[data-layout~="1col"] .column--side, 
+[data-layout~="2col"] .column--side 
+{
+  padding-left : 12px;
+}
+
+[data-layout~="1col"][data-layout~="left"] .column--side, 
+[data-layout~="2col"][data-layout~="left"] .column--side 
+{
+  padding-left : 0;
+  padding-right: 12px;
+}
+
+[data-layout~="3col"] .column--side.columnL
+{
+  padding-left : 12px;
+  padding-right: 12px;
+}
+
+[data-layout~="3col"] .column--side.columnR
+{
+  padding-left : 12px;
+}
+
+[data-layout~="3col"][data-layout~="left"] .column--side.columnL
+{
+  padding-left : 0;
+  padding-right: 12px;
+}
+
+[data-layout~="3col"][data-layout~="left"] .column--side.columnR
+{
+  padding-left : 12px;
+  padding-right: 12px;
+}
+
+[data-layout~="3col"][data-layout~="split"] .column--side.columnL
+{
+  padding-left : 0;
+  padding-right: 12px;
+}
+
+[data-layout~="3col"][data-layout~="split"] .column--side.columnR
+{
+  padding-left : 12px;
+  padding-right: 0;
+}
+
+
+@media screen and ( max-width: 1140px ) {
+
+  #column--side_columnL {
+    padding-right: 12px;
+  }
+
+  [data-layout~="2col"][data-layout~="left"]  #column--side_columnL, 
+  [data-layout~="3col"][data-layout~="left"]  #column--side_columnL, 
+  [data-layout~="3col"][data-layout~="split"] #column--side_columnL 
+  {
+    padding-left : 12px;
+  }
+
+  #column--side_columnR {
+    padding-right: 12px;
+  }
+
+}
+
+@media screen and ( max-width: 992px ) {
+
+  .column--side {
+    padding-top: 45px;
+  }
+
+}
+
+/* ---- */
+
+.footer {
+  border-top: 1px solid #f5f5f5;
+  box-sizing: border-box;
+}
+
+.footer p.copyright {
+  font-size: 0.75rem;
+  line-height: 44px;
+  margin: 0;
+  text-align: right;
+}
+
+@media screen and ( max-width: 1140px ) {
+  .footer p.copyright {
+    margin: 0 12px;
+  }
+}
+
+/* ---- */
+
+.nav {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+ul.menu--horizontal {
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+}
+
+ul.menu--horizontal > li {
+  display: inline-block;
+  font-size: 0.875rem;
+  line-height: 44px;
+  margin: 0 12px 0 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+@media screen and ( max-width: 1140px ) {
+  ul.menu--horizontal {
+    padding-left : 12px;
+    padding-right: 12px;
+  }
+}
+
+ul.menu--horizontal ul {
+  display: none;
+}
+
+/* ---- */
+
+.page {
+  overflow-x: hidden;
+}
+
+.pageBody {
+  padding-top: 45px;
+}
+
+.fedora {
+  background-color: #ffffff;
+  overflow: visible;
+  position: fixed; top: 0; left: 0;
+}
+
+.is-scrolling .fedora .inner {
+  box-shadow: 0 2px 3px -3px rgba(0,0,0,0.35);
+}
+
+.fedora > .inner {
+  border-bottom: 1px solid #f5f5f5;
+  box-sizing: border-box;
+  height: 45px;
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
+@media screen and ( max-width: 1140px ) {
+  .fedora p {
+    padding: 0 12px;
+  }
+}
+
+/* ---- */

@@ -1,0 +1,599 @@
+html {
+  height: 100%;
+  text-rendering: optimizelegibility;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation; /* remove 300ms delay in some browsers */
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+/* fix for old Android browsers */
+body {
+  -webkit-animation: bugfix infinite 1s; 
+}
+@-webkit-keyframes bugfix { 
+  from { padding: 0 } 
+    to { padding: 0 } 
+}
+
+#pangolin {
+  height: 100%;
+}
+
+.page { /* Flexbox hack for IE */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+      flex-direction: row;
+}
+
+.pageBody {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  min-height: 100%;
+  margin: 0 auto;
+  /* min-height: 100vh; */
+  /* overflow: auto;
+  overflow-x: hidden; */
+  padding: 0;
+  width: 100%;
+}
+
+.pageBody > * {
+  margin: 0 auto;
+  /* overflow: hidden; */
+  width: 100%;
+}
+
+.pageBody > .nav {
+  overflow: visible;
+}
+
+.header, .footer, .nav {
+  -webkit-box-flex: 0;
+          -ms-flex: none;
+              flex: none;
+}
+
+.main {
+  -webkit-box-flex: 1;
+          -ms-flex: 1 0 auto;
+              flex: 1 0 auto;
+}
+
+.pageBody > .header {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+           order: 2;
+}
+
+.pageBody > .main {
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+           order: 3;
+}
+
+.pageBody > .footer { 
+  -webkit-box-ordinal-group: 5;
+  -ms-flex-order: 4;
+           order: 4;
+}
+
+.pageBody > .nav {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+           order: 2;
+}
+
+.pageBody > .fedora {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+           order: 1;
+}
+
+input[type="checkbox"].toggleColumn {
+  position: fixed; top: -9999px; left: -9999px; 
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+.main,
+.main__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.column {
+  min-width: 0;
+  -webkit-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+/* fix for IE, flex-items not wrapping, overflowing their container on the x-axis;
+ * honestly, I don't know why this works.
+ */ -ms-flex: 1;
+}
+
+.column--main {
+
+}
+
+.column--side {
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+  -webkit-box-flex: 1;
+          -ms-flex-positive: 1;
+              flex-grow: 1;
+}
+
+.column--side.columnL {
+  width: 288px;
+  min-width: 288px;
+  max-width: 288px;
+}
+
+.column--side.columnR {
+  width: 288px;
+  min-width: 288px;
+  max-width: 288px;
+}
+
+.pageOverlay {
+  display: none;
+  position: fixed; top: 0; left: 0; 
+  width: 100%; max-width: 100%;
+}
+
+[data-layout~="0col"] .column--main {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+           order: 1;
+}
+[data-layout~="0col"] .column--side.columnL { display: none; }
+[data-layout~="0col"] .column--side.columnR { display: none; }
+
+[data-layout~="1col"] .column--main {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+           order: 1;
+}
+[data-layout~="1col"] .column--side.columnL { display: none; }
+[data-layout~="1col"] .column--side.columnR { display: none; }
+
+[data-layout~="2col"] .column--main {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+           order: 1;
+}
+[data-layout~="2col"] .column--side.columnL {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+           order: 2;
+}
+[data-layout~="2col"] .column--side.columnR { display: none; }
+
+[data-layout~="2col"][data-layout~="left"] .column--main {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+           order: 2;
+}
+[data-layout~="2col"][data-layout~="left"] .column--side.columnL {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+           order: 1;
+}
+[data-layout~="2col"][data-layout~="left"] .column--side.columnR { display: none; }
+
+[data-layout~="3col"] .column--main {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+           order: 1;
+}
+[data-layout~="3col"] .column--side.columnL {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+           order: 2;
+}
+[data-layout~="3col"] .column--side.columnR {
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+           order: 3;
+}
+
+[data-layout~="3col"][data-layout~="left"] .column--main {
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+           order: 3;
+}
+[data-layout~="3col"][data-layout~="left"] .column--side.columnL {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+           order: 1;
+}
+[data-layout~="3col"][data-layout~="left"] .column--side.columnR {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+           order: 2;
+}
+
+[data-layout~="3col"][data-layout~="split"] .column--main {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+           order: 2;
+}
+[data-layout~="3col"][data-layout~="split"] .column--side.columnL {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+           order: 1;
+}
+[data-layout~="3col"][data-layout~="split"] .column--side.columnR {
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+           order: 3;
+}
+
+.pageBody > .header { z-index: 1; }
+.pageBody > .main   { z-index: 2; }
+.pageBody > .footer { z-index: 3; }
+.pageBody > .nav    { z-index: 4; }
+.pageBody > .fedora { z-index: 5; }
+
+.column--main         { z-index: 1; }
+.column--side.columnL { z-index: 2; }
+.column--side.columnR { z-index: 2; }
+
+.toggleColumnButtons {
+  display: none;
+}
+
+@media screen and ( max-width: 992px ) {
+
+  .toggleColumnButtons {
+    display: block;
+  }
+
+  .pageBody > .header { z-index: auto; }
+  .pageBody > .main   { z-index: auto; }
+  .pageBody > .footer { z-index: auto; }
+  .pageBody > .nav    { z-index: auto; }
+  .pageBody > .fedora { z-index: 1; }
+
+  .column--main         { z-index: auto; }
+  .column--side.columnL { z-index: auto; }
+  .column--side.columnR { z-index: auto; }
+
+  .toggleColumnButtons,
+  .pageOverlay {
+    z-index: 3;
+  }
+
+  /* fix z-index scrolling bug in iOS Safari */
+  .spine {
+    -webkit-overflow-scrolling: touch;
+  }
+  .column--side {
+    -webkit-overflow-scrolling: auto;
+  }
+  .toggleColumn:checked ~ .spine,
+  .toggleColumn:checked ~ .pageBody .spine {
+    -webkit-overflow-scrolling: auto;
+  }
+  #columnL:checked ~ .pageBody .column--side.columnL, 
+  #columnR:checked ~ .pageBody .column--side.columnR {
+    -webkit-overflow-scrolling: touch;
+  } /* end */
+
+  .column--side {
+    min-width: 0;
+    max-width: none;
+    overflow-y: auto;
+    position: fixed; top: 0; left: auto; right: 0;
+    visibility: hidden;
+    width: 85%; height: 100%;
+  }
+
+  [data-layout~="left"]	 .column--side.columnL, 
+  [data-layout~="3col"]	 .column--side.columnL{
+    left: 0; right: auto;
+  }
+
+  #columnL:checked ~ .pageBody .column--side.columnL, 
+  #columnR:checked ~ .pageBody .column--side.columnR{
+    visibility: visible;
+  }
+
+  [data-layout~="1col"] .column--side.columnL {
+    display: block;
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+             order: 2;
+  }
+
+  .animate-columns .spine {
+    transition-duration: 300ms;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+  }
+
+  .animate-columns .column--side {
+    transition-duration: 300ms;
+    transition-property: all;
+    transition-timing-function: ease-out;
+  }
+
+  .animate-columns .pageOverlay {
+    transition-delay: 200ms;
+    transition-duration: 300ms;
+    transition-property: opacity;
+    transition-timing-function: ease-in-out; 
+  }
+
+  .pageOverlay {
+    background-color: rgba( 0, 0, 0, 0.65 );
+    background-color: <?php echo $model->value('page_toggle.overlay') ?>;
+    display: block;
+    margin: 0;
+    opacity: 0;
+    position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+    width: 0; height: 100%;
+  }
+
+  #columnL:checked ~ .pageBody .pageOverlay[for="columnL"], 
+  #columnR:checked ~ .pageBody .pageOverlay[for="columnR"] {
+    opacity: 1;
+    width: 100%; height: 100%;
+    -webkit-transform: translate3d(0%, 0%, 0);
+            transform: translate3d(0%, 0%, 0);
+  }
+
+  .spine, 
+  #columnL:checked ~ .pageBody .column--side.columnL, 
+  #columnR:checked ~ .pageBody .column--side.columnR {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  [data-layout~="1col"] #columnL:checked ~ .spine,
+  [data-layout~="1col"] #columnL:checked ~ .pageBody .spine,
+  [data-layout~="2col"] #columnL:checked ~ .spine,
+  [data-layout~="2col"] #columnL:checked ~ .pageBody .spine,
+  [data-layout~="3col"] #columnR:checked ~ .spine,
+  [data-layout~="3col"] #columnR:checked ~ .pageBody .spine
+  {
+    -webkit-transform: translate3d(-85%, 0%, 0);
+            transform: translate3d(-85%, 0%, 0);
+  }
+
+  [data-layout~="1col"][data-layout~="left"] #columnL:checked ~ .spine,
+  [data-layout~="1col"][data-layout~="left"] #columnL:checked ~ .pageBody .spine,
+  [data-layout~="2col"][data-layout~="left"] #columnL:checked ~ .spine,
+  [data-layout~="2col"][data-layout~="left"] #columnL:checked ~ .pageBody .spine,
+  [data-layout~="3col"] #columnL:checked ~ .spine,
+  [data-layout~="3col"] #columnL:checked ~ .pageBody .spine
+  {
+    -webkit-transform: translate3d(85%, 0%, 0);
+            transform: translate3d(85%, 0%, 0);
+  }
+
+  [data-layout~="1col"] .column--side.columnL,
+  [data-layout~="2col"] .column--side.columnL,
+  [data-layout~="3col"] .column--side.columnR
+  {
+    -webkit-transform: translate3d(100%, 0%, 0);
+            transform: translate3d(100%, 0%, 0);
+  }
+
+  [data-layout~="1col"][data-layout~="left"] .column--side.columnL,
+  [data-layout~="2col"][data-layout~="left"] .column--side.columnL,
+  [data-layout~="3col"]                      .column--side.columnL
+  {
+    -webkit-transform: translate3d(-100%, 0%, 0);
+            transform: translate3d(-100%, 0%, 0);
+  }
+
+}
+
+@media screen and ( min-width: 338px ) and ( max-width: 992px ) {
+  /* min-width = Math.floor( columnWidth / 0.85 ) */
+
+  .column--side.columnL {
+        width: 288px;
+    min-width: 288px;
+    max-width: 288px;
+  }
+
+  [data-layout~="1col"] #columnL:checked ~ .spine,
+  [data-layout~="1col"] #columnL:checked ~ .pageBody .spine,
+  [data-layout~="2col"] #columnL:checked ~ .spine,
+  [data-layout~="2col"] #columnL:checked ~ .pageBody .spine
+  {
+    -webkit-transform: translate3d(-288px, 0%, 0);
+            transform: translate3d(-288px, 0%, 0);
+  }
+
+  [data-layout~="1col"][data-layout~="left"] #columnL:checked ~ .spine,
+  [data-layout~="1col"][data-layout~="left"] #columnL:checked ~ .pageBody .spine,
+  [data-layout~="2col"][data-layout~="left"] #columnL:checked ~ .spine,
+  [data-layout~="2col"][data-layout~="left"] #columnL:checked ~ .pageBody .spine,
+  [data-layout~="3col"] #columnL:checked ~ .spine,
+  [data-layout~="3col"] #columnL:checked ~ .pageBody .spine
+  {
+    -webkit-transform: translate3d(288px, 0%, 0);
+            transform: translate3d(288px, 0%, 0);
+  }
+
+}
+
+@media screen and ( min-width: 338px ) and ( max-width: 992px ) {
+  /* min-width = Math.floor( columnWidth / 0.85 ) */
+
+  .column--side.columnR {
+        width: 288px;
+    min-width: 288px;
+    max-width: 288px;
+  }
+
+  [data-layout~="3col"] #columnR:checked ~ .spine,
+  [data-layout~="3col"] #columnR:checked ~ .pageBody .spine
+  {
+    -webkit-transform: translate3d(-288px, 0%, 0);
+            transform: translate3d(-288px, 0%, 0);
+  }
+
+}
+
+/* ---- */
+
+body.overflow-hidden {
+  overflow: hidden;
+}
+
+.pageBody,
+.toggleColumnButtons > .toggleColumnButtons__inner {
+  max-width: 1140px;
+}
+
+/* ---- */
+
+.toggleColumnButtons {
+  display: none;
+  height: 0;
+  overflow: visible;
+  position: absolute; top: 0; left: 0;
+  width: 100%;
+}
+
+.toggleColumnButtons > .toggleColumnButtons__inner {
+  margin: 0 auto;
+  position: relative;
+}
+
+.toggleColumnButtons label {
+  cursor: pointer;
+  display: none;
+  font-size: 0.875rem;
+  height: 44px;
+  line-height: 44px;
+  min-width: 44px;
+  position: absolute; top: 0; right: 0;
+  text-align: center;
+}
+
+[data-layout~="1col"] .toggleColumnButtons label[for="columnL"],
+[data-layout~="2col"] .toggleColumnButtons label[for="columnL"],
+[data-layout~="3col"] .toggleColumnButtons label[for="columnL"],
+[data-layout~="3col"] .toggleColumnButtons label[for="columnR"] {
+  display: block;
+}
+
+[data-layout~="1col"][data-layout~="left"] .toggleColumnButtons label[for="columnL"],
+[data-layout~="2col"][data-layout~="left"] .toggleColumnButtons label[for="columnL"],
+[data-layout~="3col"] .toggleColumnButtons label[for="columnL"] {
+  left: 0; right: auto;
+}
+
+@media screen and ( max-width: 992px ) {
+  .toggleColumnButtons {
+    display: block;
+  }
+  [data-layout~="0col"] .toggleColumnButtons {
+    display: none;
+  }
+}
+
+/* ---- */
+
+.toggleColumnButtons label > span {
+  display: block;
+  margin: 0 auto;
+  position: relative; top: 14px;
+	width: 22px; height: 16px;
+}
+
+.toggleColumnButtons label span span {
+  background-color: #191919;
+	border-radius: 3px;
+	display: block;
+	height: 2px;
+	margin: 0;
+	opacity: 1;
+  position: absolute; left: 0;
+  width: 100%;
+	-webkit-transform: rotate(0deg);
+	   -moz-transform: rotate(0deg);
+	     -o-transform: rotate(0deg);
+	        transform: rotate(0deg);
+	-webkit-transition: .2s ease-in-out;
+	   -moz-transition: .2s ease-in-out;
+	     -o-transition: .2s ease-in-out;
+	        transition: .2s ease-in-out;
+}
+
+.toggleColumnButtons label span span:nth-child(1) {
+	top: 0px;
+}
+
+.toggleColumnButtons label span span:nth-child(2), .toggleColumnButtons label span span:nth-child(3) {
+	top: 7px;
+}
+
+.toggleColumnButtons label span span:nth-child(4) {
+	top: 14px;
+}
+
+#columnL:checked ~ .pageBody .toggleColumnButtons label span span,
+#columnR:checked ~ .pageBody .toggleColumnButtons label span span 
+{
+  background-color: #ffffff;
+}
+
+#columnL:checked ~ .pageBody .toggleColumnButtons label[for="columnL"] span span:nth-child(1),
+#columnR:checked ~ .pageBody .toggleColumnButtons label[for="columnR"] span span:nth-child(1)
+{
+	left: 50%;
+	top: 8px;
+	width: 0%;
+}
+
+#columnL:checked ~ .pageBody .toggleColumnButtons label[for="columnL"] span span:nth-child(2),
+#columnR:checked ~ .pageBody .toggleColumnButtons label[for="columnR"] span span:nth-child(2)
+{
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	     -o-transform: rotate(45deg);
+	        transform: rotate(45deg);
+}
+
+#columnL:checked ~ .pageBody .toggleColumnButtons label[for="columnL"] span span:nth-child(3),
+#columnR:checked ~ .pageBody .toggleColumnButtons label[for="columnR"] span span:nth-child(3)
+{
+	-webkit-transform: rotate(-45deg);
+	   -moz-transform: rotate(-45deg);
+	     -o-transform: rotate(-45deg);
+	        transform: rotate(-45deg);
+}
+
+#columnL:checked ~ .pageBody .toggleColumnButtons label[for="columnL"] span span:nth-child(4),
+#columnR:checked ~ .pageBody .toggleColumnButtons label[for="columnR"] span span:nth-child(4)
+{
+	left: 50%;
+	top:  8px;
+	width: 0%;
+}

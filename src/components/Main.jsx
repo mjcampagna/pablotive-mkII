@@ -1,75 +1,48 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 
-import Loader from './Loader.jsx';
-import Thumbnails from './Thumbnails.jsx';
-import Image from './Image.jsx';
-import Error404 from './Error404.jsx';
+import Home from './Routes/Home.jsx';
+import Thumbnails from './Routes/Thumbnails.jsx';
+import Image from './Routes/Image.jsx';
+import About from './Routes/About.jsx';
+import Error404 from './Routes/Error404.jsx';
 
-export default class Main extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			image: null,
-			results: null
-		}
-		this.handleClickOnThumbnail = this.handleClickOnThumbnail.bind(this);
-	}
+export default function Main(props) {
+	return (
+		<React.Fragment>
+			<Switch>
 
-	componentDidMount() {
-		fetch('/unsplash/latest')
-		.then( res => res.json() )
-		.then( json => {
-			this.setState({
-				results: json
-			})
-		})
-	}
+				<Route 
+					exact path='/' 
+					render={(routeProps) => (
+						<Thumbnails {...routeProps} />
+					)}
+				/>
 
-	handleClickOnThumbnail(event) {
-		this.setState({
-			image: event.target.id
-		})
-	}
+				<Route 
+					exact path='/image' 
+					render={(routeProps) => (
+						<Thumbnails {...routeProps} />
+					)} 
+				/>
 
-	renderLoading() {
-		return <Loader />;
-	}
+				<Route 
+					path='/image/:id' 
+					render={(routeProps) => (
+						<Image {...routeProps} />
+					)}
+				/>
 
-	renderPage() {
-		return (
-			<main>
-				<Switch>
-					<Route 
-						exact path='/' 
-						render={(routeProps) => <Thumbnails {...routeProps} 
-							images={this.state.results} 
-							handleClickOnThumbnail={this.handleClickOnThumbnail} 
-						/>} 
-					/>
-					<Route 
-						exact path='/image' 
-						render={(routeProps) => <Thumbnails {...routeProps} 
-							handleClickOnThumbnail={this.handleClickOnThumbnail} 
-						/>} 
-					/>
+				<Route 
+					exact path='/about' 
+					render={(routeProps) => (
+						<About />
+					)}
+				/>
 
-					<Route 
-						path='/image/:id' 
-						render={(routeProps) => <Image {...routeProps} 
-						/>}
-					/>
-					<Route component={Error404} />
-				</Switch>
-			</main>
-		)
-	}
+				<Route component={Error404} />
 
-	render() {
-		if ( this.state.images === null ) {
-			return this.renderLoading();
-		} else {
-			return this.renderPage();
-		}
-	}	
+			</Switch>
+		</React.Fragment>
+	);
 }

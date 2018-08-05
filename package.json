@@ -1,47 +1,55 @@
 {
-  "name": "pablotive-mkii",
+  "name": "pangolin-react-boilerplate",
   "version": "1.0.0",
-  "description": "**STATUS** : work-in-progress",
+  "description": "",
   "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "del-cli dist -f",
+    "build": "webpack --mode=production",
     "dev": "webpack --mode=development --watch",
-    "build": "npm run prebuild -s && webpack --mode=production -s",
-    "start": "node server"
+    "nodemon": "nodemon -r dotenv/config server",
+    "start": "echo \"Error: no start specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mjcampagna/pablotive-mkII.git"
+    "url": "git+https://github.com/mjcampagna/pangolin-react-boilerplate.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mjcampagna/pablotive-mkII/issues"
+    "url": "https://github.com/mjcampagna/pangolin-react-boilerplate/issues"
   },
-  "homepage": "https://github.com/mjcampagna/pablotive-mkII#readme",
+  "homepage": "https://github.com/mjcampagna/pangolin-react-boilerplate#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
-    "del-cli": "^1.1.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^0.21.0",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.16.0",
-    "webpack-cli": "^3.0.8"
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0"
   },
   "dependencies": {
+    "dotenv": "^6.0.0",
     "es6-promise": "^4.2.4",
     "express": "^4.16.3",
     "isomorphic-fetch": "^2.2.1",
+    "lodash.debounce": "^4.0.8",
     "normalize.css": "^8.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
     "unsplash-js": "^4.8.0"
   }
 }

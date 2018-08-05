@@ -1,3 +1,2 @@
-# Pablotive Mk.II
+# Pangolin React Boilerplate
 
-**STATUS** : work-in-progress
