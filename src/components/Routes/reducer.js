@@ -1,5 +1,7 @@
 const initialState = {
-	images: null
+  images: null,
+  image: null,
+  view: 'original'
 };
 
 export default function( state = initialState, action ) {
@@ -12,7 +14,13 @@ export default function( state = initialState, action ) {
         images: action.payload
       }
 
-		default:
+    case 'SET_IMAGE':
+      return {
+        ... state,
+        image: action.payload
+      }
+
+    default:
       return state;
 
   } // switch

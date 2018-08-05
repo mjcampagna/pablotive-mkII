@@ -1,5 +1,4 @@
 import React from 'react';
-// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
@@ -56,7 +55,7 @@ class Thumbnails extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	images: state.unsplash.images
+	images: state.primitive.images
 });
 
 export default connect(mapStateToProps)(Thumbnails);

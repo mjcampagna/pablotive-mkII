@@ -4,3 +4,10 @@ export function updateImages( images ) {
 		payload: images
 	}
 }
+
+export function setImage( image ) {
+	return {
+		type: 'SET_IMAGE',
+		payload: image
+	}
+}
