@@ -27,6 +27,12 @@ export default function( state = initialState, action ) {
         query: action.payload
       }
 
+    case 'SELECT_VIEW':
+      return {
+        ... state,
+        view: action.payload
+      }
+
     default:
       return state;
 

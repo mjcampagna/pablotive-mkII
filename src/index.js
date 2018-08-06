@@ -1,9 +1,7 @@
 import 'normalize.css';
 import './css/structure.css';
-import './style.css';
-
 import './css/navigation.css';
-import './css/style.css';
+import './style.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

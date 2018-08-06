@@ -6,6 +6,10 @@ import Canvas from "../../primitive/canvas.js";
 import { Triangle, Rectangle, Ellipse } from "../../primitive/shape.js";
 import Optimizer from "../../primitive/optimizer.js";
 
+import {
+	selectView,
+} from './actions.js';
+
 let steps;
 
 function go(original, cfg) {
@@ -103,28 +107,28 @@ class Config extends Component {
 	handleGenerate(event) {
 		event.preventDefault();
 
-		this.setState({
-			generated: true,
-			view: 'raster'
-		}, () => {
-			const src = this.props.image.urls.regular;
-			const cfg = {
-				steps: this.state.steps,
-				computeSize: this.state.computeSize, 
-				viewSize: this.state.viewSize, 
-				shapes: this.state.shapes, 
-				alpha: this.state.alpha,
-				mutations: this.state.mutations,
-				mutateAlpha: this.state.mutateAlpha,
-				shapeTypes: this.state.shapeTypes,
-				fill: this.state.fill
-			};
-			imgSrcToBlob(src, 'image/png', 'Anonymous').then( blob => {
-				let url = URL.createObjectURL(blob);
-				Canvas.original(url, cfg).then(original => go(original, cfg));
-			})
-			.catch( err => console.log('Image failed to load...', err) );	
+		if ( this.props.view === 'original' ) {
+			this.props.dispatch( selectView('raster') );
+		}
+
+		const src = this.props.image.urls.regular;
+		const cfg = {
+			steps: this.state.steps,
+			computeSize: this.state.computeSize, 
+			viewSize: this.state.viewSize, 
+			shapes: this.state.shapes, 
+			alpha: this.state.alpha,
+			mutations: this.state.mutations,
+			mutateAlpha: this.state.mutateAlpha,
+			shapeTypes: this.state.shapeTypes,
+			fill: this.state.fill
+		};
+
+		imgSrcToBlob(src, 'image/png', 'Anonymous').then( blob => {
+			let url = URL.createObjectURL(blob);
+			Canvas.original(url, cfg).then(original => go(original, cfg));
 		})
+		.catch( err => console.log('Image failed to load...', err) );	
 	}
 
 	render() {
@@ -139,7 +143,7 @@ class Config extends Component {
 						<span className="slider-value">{this.state.steps}</span>
 					</label>
 					<legend>speed v. quality</legend>
-					<input type="range" name="steps" min="1" max="500" 
+					<input type="range" name="steps" min="1" max="1024" 
 						value={this.state.steps} 
 						onChange={(e) => this.handleConfig(e, 'steps')} 
 					/>
@@ -198,7 +202,7 @@ class Config extends Component {
 					<label>Viewing Size 
 						<span className="slider-value">{this.state.viewSize}</span>
 					</label>
-					<input type="range" name="viewSize" min="256" max="2048" 
+					<input type="range" name="viewSize" min="16" max="2048" 
 						value={this.state.viewSize} 
 						onChange={(e) => this.handleConfig(e, 'viewSize')} 
 					/>
@@ -216,12 +220,12 @@ class Config extends Component {
 
 				</form>
 
-				<p><span id="steps">&nbsp;</span></p>
-				<label className="info" htmlFor="vector-text">Copy the SVG Source</label>
-				<div id="vector-source">
-					<input type="text" className="vector" id="vector-text"></input>
-				</div>
-				<p className="info">Or select "Raster", right-click and Save.</p>
+				<label id="vector-label" htmlFor="vector-text">
+					Copy the SVG Source
+				</label>
+				<input type="text" className="vector" id="vector-text"></input>
+
+				<p id="raster-label">Or select "Raster", right-click and Save.</p>
 
 			</Fragment>
 		)

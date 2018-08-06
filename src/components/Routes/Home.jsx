@@ -21,7 +21,7 @@ import {
 	setImage,
 } from './actions.js';
 
-import Search from './Search.jsx';
+import Source from './Source.jsx';
 import Thumbnails from './Thumbnails.jsx';
 
 class Home extends Component {
@@ -33,7 +33,7 @@ class Home extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Search />
+				<Source />
 				<Thumbnails />
 			</Fragment>
 		)

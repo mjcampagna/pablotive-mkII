@@ -18,3 +18,10 @@ export function setQuery( query ) {
 		payload: query
 	}
 }
+
+export function selectView( view ) {
+	return {
+		type: 'SELECT_VIEW',
+		payload: view
+	}
+}

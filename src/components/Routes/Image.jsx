@@ -17,20 +17,16 @@ import {
 
 import {
 	setImage,
+	selectView
 } from './actions.js';
 
 import Loading from '../Loading.jsx';
 
 class Image extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			view: 'original',
-		}
-	}
 
 	componentDidMount() {
 		this.props.dispatch( _2ColRight() );
+		this.props.dispatch( selectView('original') );
 
 		fetch('/unsplash/image/' + this.props.match.params.id)
 		.then( res => res.json() )
@@ -39,32 +35,41 @@ class Image extends Component {
 		})
 	}
 
+	selectView(event, view) {
+		event.preventDefault();
+		this.props.dispatch( selectView(view) );
+	}
+
 	render() {
 		if ( !this.props.image ) {
 			return <Loading />;
 		}
 		return (
 			<Fragment>
+				<ul id="output-status">
+					<li id="steps"></li>
+					<li><button onClick={(e) => this.selectView(e, 'original')}>Original</button></li>
+					<li><button onClick={(e) => this.selectView(e, 'raster')}>Raster</button></li>
+					<li><button onClick={(e) => this.selectView(e, 'vector')}>Vector</button></li>
+				</ul>
+
 				<div id="output">
 
 					<div className="vector" id="vector" 
 						style={{ 
-							display: 'block'
-							// display: this.state.view === 'vector' ? 'block' : 'none'
+							display: this.props.view === 'vector' ? 'block' : 'none'
 						}}>
 					</div>
 
 					<div className="raster" id="raster" 
 						style={{ 
-							display: 'block'
-							// display: this.state.view === 'raster' ? 'block' : 'none'
+							display: this.props.view === 'raster' ? 'block' : 'none'
 						}}>
 					</div>
 
 					<div className="original" id="original" 
 						style={{ 
-							display: 'block'
-							// display: this.state.view === 'original' ? 'block' : 'none'
+							display: this.props.view === 'original' ? 'block' : 'none'
 						}}
 					>
 						<img 
