@@ -542,9 +542,16 @@ canvas {
   background-color: transparent;
   border: none;
   border-radius: 3px;
+  color: #333333;
   cursor: pointer;
   line-height: 1.125rem;
   outline: none;
+  transition: 0.2s all ease-in-out;
+}
+
+#output-status button.current {
+  background-color: orange;
+  color: #FFFFFF;
 }
 
 #output-status li#steps {
@@ -552,9 +559,19 @@ canvas {
   font-size: 0.625rem;
 }
 
+#output-status.view-off li,
+#output-status.view-on li.generate-notice {
+  display: none;
+}
+
+#output-status.view-on li,
+#output-status.view-off li.generate-notice {
+  display: inline-block;
+}
+
 #output > div {
-  min-height: 256px;
-  position: relative;
+  margin: 0 auto;
+  text-align: center;
 }
 
 #vector-label {

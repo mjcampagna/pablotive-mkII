@@ -2,7 +2,7 @@ const initialState = {
   images: null,
   image: null,
   query: '',
-  view: 'original'
+  view: null
 };
 
 export default function( state = initialState, action ) {

@@ -32,7 +32,7 @@ class Image extends Component {
 
 	componentDidMount() {
 		this.props.dispatch( _2ColRight() );
-		this.props.dispatch( selectView('original') );
+		this.props.dispatch( selectView(null) );
 
 		fetch('/unsplash/image/' + this.props.match.params.id)
 		.then( res => res.json() )
@@ -56,40 +56,37 @@ class Image extends Component {
 		}
 		return (
 			<Fragment>
-				<ul id="output-status">
+				<ul id="output-status" 
+					className={this.props.view === null ? 'view-off' : 'view-on'}
+				>
+					<li className="generate-notice">Press the GENERATE button =&gt;</li>
 					<li id="steps"></li>
 					<li><button 
 						onClick={(e) => this.selectView(e, 'original')} 
-						style={{
-							backgroundColor: this.props.view === 'original' ? 'orange' : 'transparent',
-							color: this.props.view === 'original' ? 'white' : 'black'
-						}}
+						className={this.props.view === 'original' ? 'current' : null} 
 					>Original</button></li>
 					<li><button 
 						onClick={(e) => this.selectView(e, 'raster')} 
-						style={{
-							backgroundColor: this.props.view === 'raster' ? 'orange' : 'transparent',
-							color: this.props.view === 'raster' ? 'white' : 'black'
-						}}
+						className={this.props.view === 'raster' ? 'current' : null} 
 					>Raster</button></li>
 					<li><button 
 						onClick={(e) => this.selectView(e, 'vector')} 
-						style={{
-							backgroundColor: this.props.view === 'vector' ? 'orange' : 'transparent',
-							color: this.props.view === 'vector' ? 'white' : 'black'
-						}}
+						className={this.props.view === 'vector' ? 'current' : null} 
 						>Vector</button></li>
 				</ul>
 
 				<div id="output">
 
-					<div className="vector" id="vector" 
+					<div className="original" id="original" 
 						style={{ 
-							display: this.props.view === 'vector' ? 'block' : 'none'
-						}}>
-						<div className="loading-container">
-							<Loading />
-						</div>
+							display: this.props.view === 'original' || this.props.view === null ? 'block' : 'none'
+						}}
+					>
+						<img 
+							src={this.props.image.urls.regular} 
+							alt={this.props.image.user.name} 
+							crossOrigin="anonymous" 
+						/>
 					</div>
 
 					<div className="raster" id="raster" 
@@ -101,16 +98,13 @@ class Image extends Component {
 						</div>
 					</div>
 
-					<div className="original" id="original" 
+					<div className="vector" id="vector" 
 						style={{ 
-							display: this.props.view === 'original' ? 'block' : 'none'
-						}}
-					>
-						<img 
-							src={this.props.image.urls.regular} 
-							alt={this.props.image.user.name} 
-							crossOrigin="anonymous" 
-						/>
+							display: this.props.view === 'vector' ? 'block' : 'none'
+						}}>
+						<div className="loading-container">
+							<Loading />
+						</div>
 					</div>
 
 				</div>

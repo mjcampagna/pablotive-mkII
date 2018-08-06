@@ -107,7 +107,7 @@ class Config extends Component {
 	handleGenerate(event) {
 		event.preventDefault();
 
-		if ( this.props.view === 'original' ) {
+		if ( this.props.view === 'original' || this.props.view === null ) {
 			this.props.dispatch( selectView('raster') );
 		}
 
