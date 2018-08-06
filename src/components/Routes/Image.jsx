@@ -111,7 +111,7 @@ class Image extends Component {
 
 				<p className="photographer-name" 
 					style={{ 
-						display: this.props.view === 'original' ? 'block' : 'none'
+						display: this.props.view === 'original' || this.props.view === null ? 'block' : 'none'
 					}}
 				>
 					Photo by {this.props.image.user.name}

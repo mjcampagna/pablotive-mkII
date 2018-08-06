@@ -6,7 +6,7 @@ export default function Menu(props) {
 		<ul className={props.classes}>
 			<li className="menu-item">
 				<Link to="/">
-					Images
+					Browse
 				</Link>
 			</li>
 			<li className="menu-item">
