@@ -17,12 +17,18 @@ import {
 
 import {
 	setImage,
-	selectView
+	selectView,
 } from './actions.js';
 
 import Loading from '../Loading.jsx';
 
 class Image extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			generated: false
+		}
+	}
 
 	componentDidMount() {
 		this.props.dispatch( _2ColRight() );
@@ -42,15 +48,37 @@ class Image extends Component {
 
 	render() {
 		if ( !this.props.image ) {
-			return <Loading />;
+			return (
+				<div className="loading-container">
+					<Loading />
+				</div>
+			);
 		}
 		return (
 			<Fragment>
 				<ul id="output-status">
 					<li id="steps"></li>
-					<li><button onClick={(e) => this.selectView(e, 'original')}>Original</button></li>
-					<li><button onClick={(e) => this.selectView(e, 'raster')}>Raster</button></li>
-					<li><button onClick={(e) => this.selectView(e, 'vector')}>Vector</button></li>
+					<li><button 
+						onClick={(e) => this.selectView(e, 'original')} 
+						style={{
+							backgroundColor: this.props.view === 'original' ? 'orange' : 'transparent',
+							color: this.props.view === 'original' ? 'white' : 'black'
+						}}
+					>Original</button></li>
+					<li><button 
+						onClick={(e) => this.selectView(e, 'raster')} 
+						style={{
+							backgroundColor: this.props.view === 'raster' ? 'orange' : 'transparent',
+							color: this.props.view === 'raster' ? 'white' : 'black'
+						}}
+					>Raster</button></li>
+					<li><button 
+						onClick={(e) => this.selectView(e, 'vector')} 
+						style={{
+							backgroundColor: this.props.view === 'vector' ? 'orange' : 'transparent',
+							color: this.props.view === 'vector' ? 'white' : 'black'
+						}}
+						>Vector</button></li>
 				</ul>
 
 				<div id="output">
@@ -59,12 +87,18 @@ class Image extends Component {
 						style={{ 
 							display: this.props.view === 'vector' ? 'block' : 'none'
 						}}>
+						<div className="loading-container">
+							<Loading />
+						</div>
 					</div>
 
 					<div className="raster" id="raster" 
 						style={{ 
 							display: this.props.view === 'raster' ? 'block' : 'none'
 						}}>
+						<div className="loading-container">
+							<Loading />
+						</div>
 					</div>
 
 					<div className="original" id="original" 
@@ -81,7 +115,11 @@ class Image extends Component {
 
 				</div>
 
-				<p className="photographer-name">
+				<p className="photographer-name" 
+					style={{ 
+						display: this.props.view === 'original' ? 'block' : 'none'
+					}}
+				>
 					Photo by {this.props.image.user.name}
 				</p>
 			</Fragment>

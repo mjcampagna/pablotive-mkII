@@ -71,7 +71,11 @@ class Thumbnails extends Component {
 
 	render() {
 		if ( !this.props.images ) {
-			return <Loading />;
+			return (
+				<div className="loading-container">
+					<Loading />
+				</div>
+			);
 		}
 		return (
 			<div id="thumbnails">
