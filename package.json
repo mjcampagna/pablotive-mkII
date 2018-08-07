@@ -10,7 +10,7 @@
     "build": "webpack --mode=production",
     "dev": "webpack --mode=development --watch",
     "nodemon": "nodemon -r dotenv/config server",
-    "start": "echo \"Error: no start specified\" && exit 1",
+    "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
