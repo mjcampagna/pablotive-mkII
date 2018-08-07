@@ -5,6 +5,12 @@ html {
   font-size: 16px;
 }
 
+@font-face {
+  font-family: "Marvin Visions";
+  src: url("./fonts/MarvinVisions-Bold.woff2") format("woff2"),
+       url("./fonts/MarvinVisions-Bold.woff") format("woff");
+}
+
 a {
   text-decoration: none;
 }
@@ -16,6 +22,10 @@ img, svg {
 
 canvas {
   max-width: 100%;
+}
+
+h1 {
+  font-family: "Marvin Visions";
 }
 
 /* ---- */
@@ -254,7 +264,6 @@ canvas {
 }
 
 #source ul {
-  display: inline-block;
   float: left;
   font-size: 0;
   margin: 1px 0;
@@ -264,7 +273,6 @@ canvas {
 }
 
 #source li {
-  cursor: pointer;
   display: inline-block;
   font-size: 0.875rem;
   line-height: 2rem;
@@ -272,6 +280,17 @@ canvas {
   margin: 0 12px 0 0;
   padding: 0;
   vertical-align: top;
+}
+
+#source li button {
+  background-color: #eeeeee;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  outline: none;
+  padding: 0 0.625rem;
 }
 
 #source form {
@@ -539,19 +558,20 @@ canvas {
 }
 
 #output-status button {
-  background-color: transparent;
+  background-color: #eeeeee;
   border: none;
-  border-radius: 3px;
-  color: #333333;
+  border-radius: 0.75rem;
   cursor: pointer;
+  font-size: 0.75rem;
   line-height: 1.125rem;
   outline: none;
+  padding: 0 0.625rem;
   transition: 0.2s all ease-in-out;
 }
 
 #output-status button.current {
   background-color: orange;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 #output-status li#steps {

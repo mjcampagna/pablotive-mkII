@@ -54,7 +54,9 @@ class Source extends Component {
 			<div id="source">
 
 				<ul>
-					<li onClick={this.getImages}>Latest</li>
+					<li>
+						<button onClick={this.getImages}>Latest</button>
+					</li>
 				</ul>
 
 				<form id="search" onSubmit={this.handleSubmit}>
