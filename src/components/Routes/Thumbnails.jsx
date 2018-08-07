@@ -3,20 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import Macy from 'macy';
 
-import {
-	_0ColLeft,
-	_0ColRight,
-	_0ColSplit,
-	_1ColLeft,
-	_1ColRight,
-	_1ColSplit,
-	_2ColLeft,
-	_2ColRight,
-	_2ColSplit,
-	_3ColLeft,
-	_3ColRight,
-	_3ColSplit
-} from '../Pangolin/actions.js';
+import { _0ColLeft, _0ColRight, _0ColSplit, _1ColLeft, _1ColRight, _1ColSplit, _2ColLeft, _2ColRight, _2ColSplit, _3ColLeft, _3ColRight, _3ColSplit } from '../Pangolin/actions.js';
 
 import {
 	updateImages,

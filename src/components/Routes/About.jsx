@@ -27,17 +27,10 @@ class About extends Component {
 	render() {
 		return (
 			<Fragment>
-				<p>A portmanteau of Pablo Picasso and the word "primitive", <strong>Pablotive</strong> uses primitive shapes to create derivative works from photographs.</p>
-				
-				<p>Turn photos into logos, create wallpapers for your smart phone, or just have fun.</p>
 
-				<ul>
-					<li>React.js</li>
-					<li>React Router</li>
-					<li>Redux</li>
-					<li>Node.js</li>
-					<li>Express.js</li>
-				</ul>
+				<p>A portmanteau of Pablo Picasso and the word "primitive", <strong>Pablotive</strong> uses primitive shapes to create derivative works from photographs.</p>
+
+				<p>Pablotive is a work-in-progress, built with React, React Router, Redux, Express, and Node.js, with images sourced from Unsplash, and image transformations powered by Primitive.js.</p>
 
 			</Fragment>
 		)
