@@ -128,9 +128,9 @@ class Config extends Component {
 		// 	let url = URL.createObjectURL(blob);
 		// 	Canvas.original(url, cfg).then(original => go(original, cfg));
 		// })
-		imgSrcToDataURL(src, 'image/png').then( blob => {
-			let url = blob;
-			Canvas.original(url, cfg).then(original => go(original, cfg));
+		imgSrcToDataURL(src, 'image/png', 'Anonymous').then( dataURL => {
+			console.log(dataURL);
+			Canvas.original(dataURL, cfg).then(original => go(original, cfg));
 		})
 		.catch( err => console.log('Image failed to load...', err) );	
 	}
