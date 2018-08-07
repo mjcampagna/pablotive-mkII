@@ -13,6 +13,14 @@ const unsplash = new Unsplash.default({
 
 app.use( express.static( path.resolve(__dirname, '../dist') ) );
 
+app.use('/unsplash/*', (req, res, next) => {
+
+	
+
+	res.set('Authorization', 'Client-ID ' + process.env.UNSPLASH_ID);
+	next();
+});
+
 app.get('/unsplash/latest', ( req, res ) => {
 	unsplash.photos.listPhotos(1, 25)
 	.then(Unsplash.toJson)
@@ -34,7 +42,11 @@ app.get('/unsplash/image/:id', ( req, res ) => {
 	.then(Unsplash.toJson)
 	.then(json => {
 		res.status(200).send(json);
-	});
+		console.log(
+			'Authorization',
+			res.get('Authorization')
+		)
+		});
 });
 
 app.get('/*', (request, response) => {

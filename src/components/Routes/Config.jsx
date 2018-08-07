@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { imgSrcToBlob } from 'blob-util';
+import { imgSrcToBlob, imgSrcToDataURL } from 'blob-util';
 import Canvas from "../../primitive/canvas.js";
 import { Triangle, Rectangle, Ellipse } from "../../primitive/shape.js";
 import Optimizer from "../../primitive/optimizer.js";
@@ -124,8 +124,12 @@ class Config extends Component {
 			fill: this.state.fill
 		};
 
-		imgSrcToBlob(src, 'image/png', 'Anonymous').then( blob => {
-			let url = URL.createObjectURL(blob);
+		// imgSrcToBlob(src, 'image/png', 'Anonymous').then( blob => {
+		// 	let url = URL.createObjectURL(blob);
+		// 	Canvas.original(url, cfg).then(original => go(original, cfg));
+		// })
+		imgSrcToDataURL(src, 'image/png', 'Anonymous').then( blob => {
+			let url = blob;
 			Canvas.original(url, cfg).then(original => go(original, cfg));
 		})
 		.catch( err => console.log('Image failed to load...', err) );	
