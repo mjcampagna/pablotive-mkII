@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { imgSrcToBlob, imgSrcToDataURL } from 'blob-util';
+import { base64StringToBlob, imgSrcToBlob, imgSrcToDataURL } from 'blob-util';
 import Canvas from "../../primitive/canvas.js";
 import { Triangle, Rectangle, Ellipse } from "../../primitive/shape.js";
 import Optimizer from "../../primitive/optimizer.js";
@@ -85,9 +85,6 @@ class Config extends Component {
 		}
 	}
 
-	componentDidMount() {
-	}
-
 	handleConfig(event, name) {
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
 		this.setState({
@@ -111,7 +108,9 @@ class Config extends Component {
 			this.props.dispatch( selectView('raster') );
 		}
 
-		const src = this.props.image.urls.regular;
+		const accessKey = '&client_id=' +
+			'4368271d97958f949ba4d4cb4d01cea685fc7443bf2b8663da2f043f9bbcc106';
+		const url = this.props.image.urls.regular + accessKey;
 		const cfg = {
 			steps: this.state.steps,
 			computeSize: this.state.computeSize, 
@@ -124,20 +123,12 @@ class Config extends Component {
 			fill: this.state.fill
 		};
 
-		// imgSrcToBlob(src, 'image/png', 'Anonymous').then( blob => {
-		// 	let url = URL.createObjectURL(blob);
-		// 	Canvas.original(url, cfg).then(original => go(original, cfg));
-		// })
-		imgSrcToDataURL(src, 'image/png', 'Anonymous').then( dataURL => {
-			console.log(dataURL);
-			Canvas.original(dataURL, cfg).then(original => go(original, cfg));
-		})
-		.catch( err => console.log('Image failed to load...', err) );	
+		Canvas.original(url, cfg).then(original => go(original, cfg));
 	}
 
 	render() {
 		return (
-			<Fragment>
+			<Fragment>				
 				<form id="primitivConfig" onSubmit={(e) => this.handleGenerate(e)}>
 
 					<button type="submit" id="generate">Generate</button>
