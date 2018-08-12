@@ -18,20 +18,7 @@ const unsplash = new Unsplash.default({
 	}
 });
 
-// const { createCanvas, loadImage } = require('canvas');
-const base64 = require('node-base64-image');
-
 app.use( express.static( path.resolve(__dirname, '../dist') ) );
-
-// app.use('/unsplash/*', (req, res, next) => {
-// 	res.set('Accept-Version', 'v1');
-// 	res.set('Authorization', 'Client-ID ' + process.env.UNSPLASH_ID);
-
-//   res.set('Access-Control-Allow-Origin', '*');
-//   res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-
-// 	next();
-// });
 
 app.get('/unsplash/latest', ( req, res ) => {
 	unsplash.photos.listPhotos(1, 25)
@@ -53,15 +40,6 @@ app.get('/unsplash/image/:id', ( req, res ) => {
 	unsplash.photos.getPhoto(req.params.id)
 	.then(Unsplash.toJson)
 	.then(json => {
-
-		// base64.encode( json.urls.regular, { 
-		// 	string: true 
-		// }, (err, image) => {
-		// 	if (err) console.log(err);
-		// 	json.base64 = 'data:image/png;base64, ' + image;
-		// 	res.status(200).send(json);
-		// });
-
 		res.status(200).send(json);
 	});
 });
