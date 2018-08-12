@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { base64StringToBlob, imgSrcToBlob, imgSrcToDataURL } from 'blob-util';
 import Canvas from "../../primitive/canvas.js";
 import { Triangle, Rectangle, Ellipse } from "../../primitive/shape.js";
 import Optimizer from "../../primitive/optimizer.js";
