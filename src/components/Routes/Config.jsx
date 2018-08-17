@@ -112,6 +112,7 @@ class Config extends Component {
 		// const url = this.props.image.urls.regular + accessKey;
 
 		const url = this.props.image.urls.regular;
+		console.log(url);
 
 		const cfg = {
 			steps: this.state.steps,
