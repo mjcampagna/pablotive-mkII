@@ -107,9 +107,12 @@ class Config extends Component {
 			this.props.dispatch( selectView('raster') );
 		}
 
-		const accessKey = '&client_id=' +
-			'4368271d97958f949ba4d4cb4d01cea685fc7443bf2b8663da2f043f9bbcc106';
-		const url = this.props.image.urls.regular + accessKey;
+		// const accessKey = '&client_id=' +
+		// 	'4368271d97958f949ba4d4cb4d01cea685fc7443bf2b8663da2f043f9bbcc106';
+		// const url = this.props.image.urls.regular + accessKey;
+
+		const url = this.props.image.urls.regular;
+
 		const cfg = {
 			steps: this.state.steps,
 			computeSize: this.state.computeSize, 
