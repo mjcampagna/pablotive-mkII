@@ -9,11 +9,11 @@ export default function Menu(props) {
 					Browse
 				</Link>
 			</li>
-			<li className="menu-item">
+			{/* <li className="menu-item">
 				<Link to="/about">
 					About
 				</Link>
-			</li>
+			</li> */}
 		</ul>
 	);
 }
