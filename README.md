@@ -2,4 +2,4 @@
 
 Recreate images using primitive shapes!
 
-Utilizes the Unsplash API and the Primitive JS library.
+Built with ReactJS and Node.js, and utilizing the Unsplash API and Primitive JS library.
