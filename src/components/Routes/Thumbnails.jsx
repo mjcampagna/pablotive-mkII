@@ -35,6 +35,7 @@ class Thumbnails extends Component {
 	}
 
 	componentDidUpdate(){
+		console.log( this.props.images );
 		if ( this.props.images !== null ) {
 			let macy = Macy({
 				breakAt: {
