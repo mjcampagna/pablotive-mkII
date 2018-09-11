@@ -535,6 +535,17 @@ h1 {
   background-color: #880E4F;
 }
 
+#download-image {
+  background-color: orange;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  margin: 0 0.3125rem;
+  padding: 0 0.625rem;
+}
+
 /* ---- */
 
 #output-status {

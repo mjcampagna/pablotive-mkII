@@ -126,9 +126,17 @@ class Config extends Component {
 		Canvas.original(url, cfg).then(original => go(original, cfg));
 	}
 
+	handleSaveImage(event) {
+		event.preventDefault();
+		const canvas = document.getElementById('raster').querySelector('canvas');
+		const dataURL = canvas.toDataURL('image/jpeg', 1.0);
+		const newWindow = window.open();
+		newWindow.document.write('<img src="' + dataURL + '" />');
+	}
+
 	render() {
 		return (
-			<Fragment>				
+			<Fragment>
 				<form id="primitivConfig" onSubmit={(e) => this.handleGenerate(e)}>
 
 					<button type="submit" id="generate">Generate</button>
@@ -220,7 +228,9 @@ class Config extends Component {
 				</label>
 				<input type="text" className="vector" id="vector-text"></input>
 
-				<p id="raster-label">Or select "Raster", right-click and Save.</p>
+				<p id="raster-label">Or click to <a href="#" id="download-image" onClick={this.handleSaveImage}>Save Image</a></p>
+
+				{/* <p id="raster-label">Or select "Raster", right-click and Save.</p> */}
 
 			</Fragment>
 		)
